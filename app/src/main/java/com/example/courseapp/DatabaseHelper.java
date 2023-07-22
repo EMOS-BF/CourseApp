@@ -14,10 +14,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String  DATABASE_NAME="student_db";
     private static final String TABLE_NAME="students";
     private static final String ID="id";
-    private static final String name="name";
+    private static final String username ="username";
     private static final String email="email";
-    private static final String dob="dob";
-    private static final String phone="phone";
+    private static final String niveau ="niveau";
+    private static final String domaine ="domaine";
     private static final String created_at="created_at";
 
     public DatabaseHelper(Context context){
@@ -29,10 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String table_query="CREATE TABLE if not EXISTS "+TABLE_NAME+
                 "("+
                 ID+" INTEGER PRIMARY KEY,"+
-                name+" TEXT ,"+
+                username +" TEXT ,"+
                 email+" TEXT ,"+
-                dob+ " TEXT ,"+
-                phone+" TEXT ,"+
+                niveau + " TEXT ,"+
+                domaine +" TEXT ,"+
                 created_at+ " TEXT "+
                 ")";
         db.execSQL(table_query);
@@ -48,23 +48,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
 
         ContentValues contentValues=new ContentValues();
-        contentValues.put(name,studentModel.getName());
+        contentValues.put(username,studentModel.getUsername());
         contentValues.put(email,studentModel.getEmail());
-        contentValues.put(phone,studentModel.getPhone());
-        contentValues.put(dob,studentModel.getDob());
+        contentValues.put(domaine,studentModel.getDomaine());
+        contentValues.put(niveau,studentModel.getNiveau());
         contentValues.put(created_at,studentModel.getCreated_at());
         db.insert(TABLE_NAME,null,contentValues);
-        db.close();
     }
 
     public StudentModel getStudent(int id){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.query(TABLE_NAME,new String[]{ID,name,email,phone,dob,created_at},ID+" = ?",new String[]{String.valueOf(id)},null,null,null);
+        Cursor cursor=db.query(TABLE_NAME,new String[]{ID, username,email, domaine, niveau,created_at},ID+" = ?",new String[]{String.valueOf(id)},null,null,null);
         if(cursor!=null){
             cursor.moveToFirst();
         }
         StudentModel studentModel=new StudentModel(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5));
-        db.close();
         return studentModel;
     }
 
@@ -88,10 +86,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateStudent(StudentModel studentModel){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
-        contentValues.put(name,studentModel.getName());
+        contentValues.put(username,studentModel.getUsername());
         contentValues.put(email,studentModel.getEmail());
-        contentValues.put(phone,studentModel.getPhone());
-        contentValues.put(dob,studentModel.getDob());
+        contentValues.put(domaine,studentModel.getDomaine());
+        contentValues.put(niveau,studentModel.getNiveau());
         return db.update(TABLE_NAME,contentValues,ID+"=?",new String[]{String.valueOf(studentModel.getId())});
 
     }

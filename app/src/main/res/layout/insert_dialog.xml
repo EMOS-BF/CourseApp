@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_margin="5dp"
-        android:id="@+id/name"
-        android:hint="Name : "
+        android:id="@+id/username"
+        android:hint="Username : "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
@@ -25,14 +25,14 @@
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_margin="5dp"
-        android:id="@+id/phone"
-        android:hint="Phone : "
+        android:id="@+id/domaine"
+        android:hint="Domaine : "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_margin="5dp"
-        android:id="@+id/dob"
-        android:hint="DOB : "
+        android:id="@+id/niveau"
+        android:hint="Niveau : "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button

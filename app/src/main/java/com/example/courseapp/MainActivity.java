@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         List<StudentModel> studentModelList=databaseHelper.getAllStudents();
         datalist.setText("");
         for(StudentModel studentModel:studentModelList){
-            datalist.append("ID : "+studentModel.getId()+" | Name : "+studentModel.getName()+" | Email : "+studentModel.getEmail()+" | DOB : "+studentModel.getDob()+ " | PHONE : "+studentModel.getPhone()+" \n\n");
+            datalist.append("ID : "+studentModel.getId()+" | USERNAME : "+studentModel.getUsername()+" | EMAIL : "+studentModel.getEmail()+" | NIVEAU : "+studentModel.getNiveau()+ " | DOMAINE : "+studentModel.getDomaine()+" \n\n");
         }
     }
 
@@ -93,28 +93,28 @@ public class MainActivity extends AppCompatActivity {
         StudentModel studentModel=databaseHelper.getStudent(Integer.parseInt(id));
         AlertDialog.Builder al=new AlertDialog.Builder(MainActivity.this);
         View view=getLayoutInflater().inflate(R.layout.update_dialog,null);
-        final EditText name=view.findViewById(R.id.name);
+        final EditText username=view.findViewById(R.id.username);
         final EditText email=view.findViewById(R.id.email);
-        final EditText phone=view.findViewById(R.id.phone);
-        final EditText dob=view.findViewById(R.id.dob);
+        final EditText domaine=view.findViewById(R.id.domaine);
+        final EditText niveau=view.findViewById(R.id.niveau);
         Button update_btn=view.findViewById(R.id.update_btn);
         al.setView(view);
 
-        name.setText(studentModel.getName());
+        username.setText(studentModel.getUsername());
         email.setText(studentModel.getEmail());
-        phone.setText(studentModel.getPhone());
-        dob.setText(studentModel.getDob());
+        domaine.setText(studentModel.getDomaine());
+        niveau.setText(studentModel.getNiveau());
 
         final AlertDialog alertDialog=al.show();
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 StudentModel studentModel=new StudentModel();
-                studentModel.setName(name.getText().toString());
+                studentModel.setUsername(username.getText().toString());
                 studentModel.setId(id);
                 studentModel.setEmail(email.getText().toString());
-                studentModel.setPhone(phone.getText().toString());
-                studentModel.setDob(dob.getText().toString());
+                studentModel.setDomaine(domaine.getText().toString());
+                studentModel.setNiveau(niveau.getText().toString());
                 databaseHelper.updateStudent(studentModel);
                 alertDialog.dismiss();
                 refreshData();
@@ -147,10 +147,10 @@ public class MainActivity extends AppCompatActivity {
     private void ShowInputDialog() {
         AlertDialog.Builder al=new AlertDialog.Builder(MainActivity.this);
         View view=getLayoutInflater().inflate(R.layout.insert_dialog,null);
-        final EditText name=view.findViewById(R.id.name);
+        final EditText username=view.findViewById(R.id.username);
         final EditText email=view.findViewById(R.id.email);
-        final EditText phone=view.findViewById(R.id.phone);
-        final EditText dob=view.findViewById(R.id.dob);
+        final EditText domaine=view.findViewById(R.id.domaine);
+        final EditText niveau=view.findViewById(R.id.niveau);
         Button insertBtn=view.findViewById(R.id.insert_btn);
         al.setView(view);
 
@@ -160,10 +160,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StudentModel studentModel=new StudentModel();
-                studentModel.setName(name.getText().toString());
+                studentModel.setUsername(username.getText().toString());
                 studentModel.setEmail(email.getText().toString());
-                studentModel.setPhone(phone.getText().toString());
-                studentModel.setDob(dob.getText().toString());
+                studentModel.setDomaine(domaine.getText().toString());
+                studentModel.setNiveau(niveau.getText().toString());
                 Date date=new Date();
                 studentModel.setCreated_at(""+date.getTime());
                 databaseHelper.AddStudnet(studentModel);

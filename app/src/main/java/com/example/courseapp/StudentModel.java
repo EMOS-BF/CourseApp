@@ -2,9 +2,9 @@ package com.example.courseapp;
 
 public class StudentModel {
     String id="";
-    String name="";
+    String username ="";
     String email="";
-    String phone="";
+    String domaine ="";
 
     public String getId() {
         return id;
@@ -14,12 +14,12 @@ public class StudentModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -30,20 +30,20 @@ public class StudentModel {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getDomaine() {
+        return domaine;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setDomaine(String domaine) {
+        this.domaine = domaine;
     }
 
-    public String getDob() {
-        return dob;
+    public String getNiveau() {
+        return niveau;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
 
     public String getCreated_at() {
@@ -54,15 +54,15 @@ public class StudentModel {
         this.created_at = created_at;
     }
 
-    String dob="";
+    String niveau ="";
     String created_at="";
 
-    public StudentModel(String id, String name, String email, String phone, String dob, String created_at) {
+    public StudentModel(String id, String username, String email, String domaine, String niveau, String created_at) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.email = email;
-        this.phone = phone;
-        this.dob = dob;
+        this.domaine = domaine;
+        this.niveau = niveau;
         this.created_at = created_at;
     }
 
