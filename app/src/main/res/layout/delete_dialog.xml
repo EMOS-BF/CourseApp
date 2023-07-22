@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <TextView
-        android:text="DELETE DATA"
-        style="@style/TextAppearance.Compat.Notification.Title"
+        android:text="SUPRESSION UTILISATEUR"
         android:padding="10dp"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -14,13 +13,13 @@
     <EditText
         android:layout_margin="5dp"
         android:id="@+id/id_input"
-        android:hint="ID : "
+        android:hint="Veuillez entrer l'ID : "
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
         android:layout_margin="10dp"
-        android:text="DELETE"
+        android:text="SUPPRIMER"
         android:id="@+id/delete_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

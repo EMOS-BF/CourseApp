@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <TextView
-        android:text="INSERT DATA"
-        style="@style/TextAppearance.Compat.Notification.Title"
+        android:text="AJOUT D'UTILISATEUR"
         android:padding="10dp"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -29,6 +28,7 @@
         android:hint="Domaine : "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <EditText
         android:layout_margin="5dp"
         android:id="@+id/niveau"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"/>
     <Button
         android:layout_margin="10dp"
-        android:text="INSERT"
+        android:text="AJOUTER"
         android:id="@+id/insert_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

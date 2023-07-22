@@ -12,7 +12,8 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION=1;
     private static final String  DATABASE_NAME="student_db";
-    private static final String TABLE_NAME="students";
+    private static final String TABLE_NAME="users";
+
     private static final String ID="id";
     private static final String username ="username";
     private static final String email="email";
@@ -26,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE admins (username TEXT PRIMARY KEY, email TEXT, password TEXT)");
         String table_query="CREATE TABLE if not EXISTS "+TABLE_NAME+
                 "("+
                 ID+" INTEGER PRIMARY KEY,"+
@@ -104,6 +106,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         Cursor cursor=sqLiteDatabase.rawQuery(query,null);
         return cursor.getCount();
+    }
+
+    public boolean checkusername(String username){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from admins where username = ?",new String[] {username});
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean checkusernamepassword(String username,String password){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from admins where username = ? and password =?",new String[] {username,password});
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean insertData(String username,String email,String password){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Username",username);
+        contentValues.put("email",email);
+        contentValues.put("password",password);
+        long result = MyDB.insert("admins",null,contentValues);
+        if(result == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
 }

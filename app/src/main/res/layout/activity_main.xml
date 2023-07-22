@@ -1,72 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:id="@+id/line1"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/insert_data"
-            android:text="INSERT"
-            android:layout_weight="1"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <View
-
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
-        <Button
-            android:id="@+id/update_data"
-            android:text="UPDATE"
-
-            android:layout_weight="1"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <View
-
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
-        <Button
-            android:id="@+id/delete_data"
-            android:text="DELETE"
-
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
-        <Button
-            android:id="@+id/refresh_data"
-            android:text="READ"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
 
     <TextView
-        android:layout_below="@id/line1"
-        android:gravity="center"
-        android:padding="10dp"
-        android:id="@+id/data_list_count"
-        android:text="All DATA LIST!"
+        android:id="@+id/label_connexion_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
-    <TextView
-        android:layout_below="@id/data_list_count"
-        android:id="@+id/all_data_list"
+        android:layout_marginTop="10dp"
+        android:text="Connexion"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:typeface="serif"/>
+
+    <EditText
+        android:id="@+id/username_log"
         android:layout_width="match_parent"
-        android:padding="10dp"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/label_connexion_log"/>
+
+    <EditText
+        android:id="@+id/password_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:layout_marginTop="50dp"
+        android:inputType="textPassword"
+        android:layout_below="@+id/username_log"/>
+
+    <Button
+        android:id="@+id/button_connexion_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connexion"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/password_log"/>
+
+    <Button
+        android:id="@+id/button_inscription_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inscription"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/button_connexion_log"/>
+
 
 </RelativeLayout>
