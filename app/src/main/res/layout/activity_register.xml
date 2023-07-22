@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:hint="Username"
         android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/baseline_person_24"
         android:layout_below="@+id/label_inscription"/>
 
 
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:hint="E-mail"
         android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/baseline_email_24"
         android:layout_below="@+id/username"/>
 
 
@@ -42,6 +44,7 @@
         android:hint="Mot de passe"
         android:layout_marginTop="20dp"
         android:inputType="textPassword"
+        android:drawableLeft="@drawable/baseline_key_24"
         android:layout_below="@+id/email"/>
     <EditText
         android:id="@+id/repassword"
@@ -50,6 +53,7 @@
         android:hint="Confirmer le mot de passe"
         android:layout_marginTop="20dp"
         android:inputType="textPassword"
+        android:drawableLeft="@drawable/baseline_key_24"
         android:layout_below="@+id/password"/>
 
     <Button

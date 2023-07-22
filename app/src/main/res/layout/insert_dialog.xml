@@ -15,29 +15,34 @@
         android:id="@+id/username"
         android:hint="Username : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_person_24"/>
     <EditText
         android:layout_margin="5dp"
         android:id="@+id/email"
         android:hint="Email : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_email_24"/>
     <EditText
         android:layout_margin="5dp"
         android:id="@+id/domaine"
         android:hint="Domaine : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_factory_24"
+        />
 
     <EditText
         android:layout_margin="5dp"
         android:id="@+id/niveau"
         android:hint="Niveau : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_school_24"/>
     <Button
         android:layout_margin="10dp"
-        android:text="AJOUTER"
+        android:text="+AJOUTER"
         android:id="@+id/insert_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
