@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- list_item_student.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: " />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username: " />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: " />
+
+    <TextView
+        android:id="@+id/textViewNiveau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Niveau: " />
+
+    <TextView
+        android:id="@+id/textViewDomaine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Domaine: " />
+
+</LinearLayout>

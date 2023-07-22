@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
 
                 if(user.equals("")||pass.equals(""))
-                    Toast.makeText(MainActivity.this, "Entrez tout les champs svp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Veuillez entrez tout les champq!", Toast.LENGTH_SHORT).show();
                 else{
                     Boolean checkuserpass = DB.checkusernamepassword(user, pass);
                     if(checkuserpass==true){

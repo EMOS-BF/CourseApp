@@ -2,6 +2,9 @@ package com.example.courseapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +26,17 @@ public class AcceuilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        databaseHelper = new DatabaseHelper(this);
+
+        List<StudentModel> studentModelList = databaseHelper.getAllStudents();
+
+        // Créez un adaptateur personnalisé pour lier les données à la vue de chaque élément
+        StudentAdapter adapter = new StudentAdapter(studentModelList);
+        recyclerView.setAdapter(adapter);
+
 
         databaseHelper=new DatabaseHelper(AcceuilActivity.this);
         Button delete=findViewById(R.id.delete_data);
