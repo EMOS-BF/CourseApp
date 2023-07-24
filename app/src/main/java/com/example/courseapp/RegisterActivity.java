@@ -15,6 +15,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username, email, password,repassword;
     Button button_inscription, button_connexion;
     DatabaseHelper DB;
+    private StudentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         repassword = (EditText) findViewById(R.id.repassword);
         button_inscription =(Button) findViewById(R.id.button_inscription);
         button_connexion = (Button) findViewById(R.id.button_connexion);
-        DB = new DatabaseHelper(getApplicationContext());
+        DB = new DatabaseHelper(getApplicationContext(),adapter);
 
 
         button_inscription.setOnClickListener(new View.OnClickListener() {

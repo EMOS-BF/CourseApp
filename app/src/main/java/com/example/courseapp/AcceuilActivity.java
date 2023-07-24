@@ -22,6 +22,7 @@ public class AcceuilActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     TextView datalist;
     TextView datalist_count;
+    private StudentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class AcceuilActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this,adapter);
 
         List<StudentModel> studentModelList = databaseHelper.getAllStudents();
 
@@ -38,7 +39,7 @@ public class AcceuilActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        databaseHelper=new DatabaseHelper(AcceuilActivity.this);
+        databaseHelper=new DatabaseHelper(AcceuilActivity.this,adapter);
         Button delete=findViewById(R.id.delete_data);
         Button insert=findViewById(R.id.insert_data);
         Button update=findViewById(R.id.update_data);
@@ -49,7 +50,7 @@ public class AcceuilActivity extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                refreshData();
+                //refreshData();
 
             }
         });
@@ -77,14 +78,17 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    private void refreshData() {
-        datalist_count.setText("NOMBRE D'UTILISATEURS : "+databaseHelper.getTotalCount());
+    private void refreshData(StudentModel newStudent) {
+        List<StudentModel> studentModelList = databaseHelper.getAllStudents();
+        StudentAdapter adapter = new StudentAdapter(studentModelList);
+        // Ajoutez le nouvel utilisateur à la base de données
+        databaseHelper.AddStudnet(newStudent);
 
-        List<StudentModel> studentModelList=databaseHelper.getAllStudents();
-        datalist.setText("");
-        for(StudentModel studentModel:studentModelList){
-            datalist.append("ID : "+studentModel.getId()+" | USERNAME : "+studentModel.getUsername()+" | EMAIL : "+studentModel.getEmail()+" | NIVEAU : "+studentModel.getNiveau()+ " | DOMAINE : "+studentModel.getDomaine()+" \n\n");
-        }
+        // Obtenez la liste mise à jour des étudiants depuis la base de données
+        List<StudentModel> updatedStudentList = databaseHelper.getAllStudents();
+
+        // Mettez à jour les données de l'adaptateur avec la liste mise à jour
+        adapter.updateData(updatedStudentList);
     }
 
     private void showUpdateIdDialog() {
@@ -99,7 +103,7 @@ public class AcceuilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showDataDialog(id_input.getText().toString());
                 alertDialog.dismiss();
-                refreshData();
+               // refreshData();
             }
         });
 
@@ -135,7 +139,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 studentModel.setNiveau(niveau.getText().toString());
                 databaseHelper.updateStudent(studentModel);
                 alertDialog.dismiss();
-                refreshData();
+                //refreshData();
             }
         });
     }
@@ -153,10 +157,11 @@ public class AcceuilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 databaseHelper.deleteStudent(id_input.getText().toString());
                 alertDialog.dismiss();
-                refreshData();
+                //refreshData();
 
             }
         });
+
 
 
     }
@@ -186,7 +191,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 studentModel.setCreated_at(""+date.getTime());
                 databaseHelper.AddStudnet(studentModel);
                 alertDialog.dismiss();
-                refreshData();
+                //refreshData();
             }
         });
     }

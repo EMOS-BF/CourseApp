@@ -56,9 +56,9 @@
         android:id="@+id/line2"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1">
     <TextView
-        android:layout_below="@id/line1"
         android:gravity="center"
         android:padding="10dp"
         android:id="@+id/data_list_count"
@@ -66,12 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <TextView
-        android:layout_below="@id/data_list_count"
-        android:id="@+id/all_data_list"
-        android:layout_width="match_parent"
-        android:padding="10dp"
-        android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/all_data_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/data_list_count"
+            android:padding="10dp"
+            />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

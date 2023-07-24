@@ -52,5 +52,10 @@ import java.util.List;
                 textViewDomaine = itemView.findViewById(R.id.textViewDomaine);
             }
         }
+
+        public void updateData(List<StudentModel> newStudentList) {
+            this.studentList = newStudentList;
+            notifyDataSetChanged();
+        }
     }
 

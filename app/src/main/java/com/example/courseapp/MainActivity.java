@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username, password;
     Button button_connexion, button_inscription;
+    private StudentAdapter adapter;
     DatabaseHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_log);
         button_connexion = (Button) findViewById(R.id.button_connexion_log);
         button_inscription = (Button) findViewById(R.id.button_inscription_log);
-        DB = new DatabaseHelper(this);
+        DB = new DatabaseHelper(this,adapter);
 
 
         button_connexion.setOnClickListener(new View.OnClickListener() {

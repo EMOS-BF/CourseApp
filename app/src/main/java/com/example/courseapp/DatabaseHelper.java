@@ -20,9 +20,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String niveau ="niveau";
     private static final String domaine ="domaine";
     private static final String created_at="created_at";
+    private StudentAdapter adapter;
 
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context, StudentAdapter adapter){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
+        this.adapter = adapter;
     }
 
     @Override
@@ -56,6 +58,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(niveau,studentModel.getNiveau());
         contentValues.put(created_at,studentModel.getCreated_at());
         db.insert(TABLE_NAME,null,contentValues);
+        List<StudentModel> updatedStudentList = getAllStudents();
+        adapter.updateData(updatedStudentList);
     }
 
     public StudentModel getStudent(int id){
@@ -92,13 +96,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(email,studentModel.getEmail());
         contentValues.put(domaine,studentModel.getDomaine());
         contentValues.put(niveau,studentModel.getNiveau());
-        return db.update(TABLE_NAME,contentValues,ID+"=?",new String[]{String.valueOf(studentModel.getId())});
+        int rowsAffected = db.update(TABLE_NAME, contentValues, ID + "=?", new String[]{String.valueOf(studentModel.getId())});
 
+        // Update the adapter with the updated data
+        if (rowsAffected > 0) {
+            List<StudentModel> updatedStudentList = getAllStudents();
+            adapter.updateData(updatedStudentList);
+        }
+
+        return rowsAffected;
     }
 
     public void deleteStudent(String id){
         SQLiteDatabase db=this.getWritableDatabase();
         db.delete(TABLE_NAME,ID+"=?",new String[]{id});
+        List<StudentModel> updatedStudentList = getAllStudents();
+        adapter.updateData(updatedStudentList);
     }
 
     public int getTotalCount(){
