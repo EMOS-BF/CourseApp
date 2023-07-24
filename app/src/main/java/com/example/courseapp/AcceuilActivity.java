@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.List;
@@ -43,22 +42,17 @@ public class AcceuilActivity extends AppCompatActivity {
         Button delete=findViewById(R.id.delete_data);
         Button insert=findViewById(R.id.insert_data);
         Button update=findViewById(R.id.update_data);
-        Button read=findViewById(R.id.refresh_data);
         datalist=findViewById(R.id.all_data_list);
         datalist_count=findViewById(R.id.data_list_count);
 
-        read.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //refreshData();
+        datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS :  "+databaseHelper.getTotalCount());
 
-            }
-        });
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowInputDialog();
+                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
             }
         });
 
@@ -66,6 +60,7 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showUpdateIdDialog();
+                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
             }
         });
 
@@ -73,23 +68,12 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDeleteDialog();
+                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
             }
         });
 
     }
 
-    private void refreshData(StudentModel newStudent) {
-        List<StudentModel> studentModelList = databaseHelper.getAllStudents();
-        StudentAdapter adapter = new StudentAdapter(studentModelList);
-        // Ajoutez le nouvel utilisateur à la base de données
-        databaseHelper.AddStudnet(newStudent);
-
-        // Obtenez la liste mise à jour des étudiants depuis la base de données
-        List<StudentModel> updatedStudentList = databaseHelper.getAllStudents();
-
-        // Mettez à jour les données de l'adaptateur avec la liste mise à jour
-        adapter.updateData(updatedStudentList);
-    }
 
     private void showUpdateIdDialog() {
         AlertDialog.Builder al=new AlertDialog.Builder(AcceuilActivity.this);
@@ -103,7 +87,7 @@ public class AcceuilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showDataDialog(id_input.getText().toString());
                 alertDialog.dismiss();
-               // refreshData();
+                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
             }
         });
 
@@ -113,36 +97,41 @@ public class AcceuilActivity extends AppCompatActivity {
 
         private void showDataDialog(final String id) {
         StudentModel studentModel=databaseHelper.getStudent(Integer.parseInt(id));
-        AlertDialog.Builder al=new AlertDialog.Builder(AcceuilActivity.this);
-        View view=getLayoutInflater().inflate(R.layout.update_dialog,null);
-        final EditText username=view.findViewById(R.id.username);
-        final EditText email=view.findViewById(R.id.email);
-        final EditText domaine=view.findViewById(R.id.domaine);
-        final EditText niveau=view.findViewById(R.id.niveau);
-        Button update_btn=view.findViewById(R.id.update_btn);
-        al.setView(view);
+        if(studentModel != null) {
+            AlertDialog.Builder al = new AlertDialog.Builder(AcceuilActivity.this);
+            View view = getLayoutInflater().inflate(R.layout.update_dialog, null);
+            final EditText username = view.findViewById(R.id.username);
+            final EditText email = view.findViewById(R.id.email);
+            final EditText domaine = view.findViewById(R.id.domaine);
+            final EditText niveau = view.findViewById(R.id.niveau);
+            Button update_btn = view.findViewById(R.id.update_btn);
+            al.setView(view);
 
-        username.setText(studentModel.getUsername());
-        email.setText(studentModel.getEmail());
-        domaine.setText(studentModel.getDomaine());
-        niveau.setText(studentModel.getNiveau());
+            username.setText(studentModel.getUsername());
+            email.setText(studentModel.getEmail());
+            domaine.setText(studentModel.getDomaine());
+            niveau.setText(studentModel.getNiveau());
 
-        final AlertDialog alertDialog=al.show();
-        update_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StudentModel studentModel=new StudentModel();
-                studentModel.setUsername(username.getText().toString());
-                studentModel.setId(id);
-                studentModel.setEmail(email.getText().toString());
-                studentModel.setDomaine(domaine.getText().toString());
-                studentModel.setNiveau(niveau.getText().toString());
-                databaseHelper.updateStudent(studentModel);
-                alertDialog.dismiss();
-                //refreshData();
+            final AlertDialog alertDialog = al.show();
+            update_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StudentModel studentModel = new StudentModel();
+                    studentModel.setUsername(username.getText().toString());
+                    studentModel.setId(id);
+                    studentModel.setEmail(email.getText().toString());
+                    studentModel.setDomaine(domaine.getText().toString());
+                    studentModel.setNiveau(niveau.getText().toString());
+                    databaseHelper.updateStudent(AcceuilActivity.this, studentModel);
+                    alertDialog.dismiss();
+                }
+            });
+        }
+        else {
+                // Show a Toast message indicating that the student with the given ID does not exist
+                Toast.makeText(AcceuilActivity.this, "Il n'existe pas d'utilisateur avec l'ID : " + id , Toast.LENGTH_SHORT).show();
             }
-        });
-    }
+        }
 
     private void showDeleteDialog() {
         AlertDialog.Builder al=new AlertDialog.Builder(AcceuilActivity.this);
@@ -155,9 +144,9 @@ public class AcceuilActivity extends AppCompatActivity {
         delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelper.deleteStudent(id_input.getText().toString());
+                databaseHelper.deleteStudent(AcceuilActivity.this,id_input.getText().toString());
                 alertDialog.dismiss();
-                //refreshData();
+                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
 
             }
         });
@@ -191,7 +180,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 studentModel.setCreated_at(""+date.getTime());
                 databaseHelper.AddStudnet(studentModel);
                 alertDialog.dismiss();
-                //refreshData();
+                datalist_count.setText("ALL DATA COUNT : "+databaseHelper.getTotalCount());
             }
         });
     }

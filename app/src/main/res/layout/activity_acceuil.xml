@@ -44,12 +44,7 @@
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"/>
-        <Button
-            android:id="@+id/refresh_data"
-            android:text="LISTE"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
     <LinearLayout
@@ -73,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/data_list_count"
             android:padding="10dp"
-            />
+            android:textColor="#181717" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

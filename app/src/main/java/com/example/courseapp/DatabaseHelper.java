@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,17 +61,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME,null,contentValues);
         List<StudentModel> updatedStudentList = getAllStudents();
         adapter.updateData(updatedStudentList);
+
     }
 
-    public StudentModel getStudent(int id){
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.query(TABLE_NAME,new String[]{ID, username,email, domaine, niveau,created_at},ID+" = ?",new String[]{String.valueOf(id)},null,null,null);
-        if(cursor!=null){
-            cursor.moveToFirst();
+    public StudentModel getStudent(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, new String[]{ID, username, email, domaine, niveau, created_at}, ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            StudentModel studentModel = new StudentModel(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+            cursor.close();
+            return studentModel;
+        } else {
+            return null;
         }
-        StudentModel studentModel=new StudentModel(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5));
-        return studentModel;
     }
+
 
     public List<StudentModel> getAllStudents(){
         List<StudentModel> studentModelList=new ArrayList<>();
@@ -89,27 +95,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return studentModelList;
     }
 
-    public int updateStudent(StudentModel studentModel){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(username,studentModel.getUsername());
-        contentValues.put(email,studentModel.getEmail());
-        contentValues.put(domaine,studentModel.getDomaine());
-        contentValues.put(niveau,studentModel.getNiveau());
-        int rowsAffected = db.update(TABLE_NAME, contentValues, ID + "=?", new String[]{String.valueOf(studentModel.getId())});
-
-        // Update the adapter with the updated data
-        if (rowsAffected > 0) {
-            List<StudentModel> updatedStudentList = getAllStudents();
-            adapter.updateData(updatedStudentList);
+    private boolean studentExists(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, new String[]{ID}, ID + "=?", new String[]{id}, null, null, null);
+        boolean exists = cursor != null && cursor.moveToFirst();
+        if (cursor != null) {
+            cursor.close();
         }
-
-        return rowsAffected;
+        return exists;
     }
 
-    public void deleteStudent(String id){
+
+    public void updateStudent(Context context, StudentModel studentModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(username, studentModel.getUsername());
+        contentValues.put(email, studentModel.getEmail());
+        contentValues.put(domaine, studentModel.getDomaine());
+        contentValues.put(niveau, studentModel.getNiveau());
+
+        // Check if the student with the given ID exists before performing the update operation
+        int rowsAffected = 0;
+        if (studentExists(studentModel.getId())) {
+            rowsAffected = db.update(TABLE_NAME, contentValues, ID + "=?", new String[]{String.valueOf(studentModel.getId())});
+
+            // Update the adapter with the updated data if the update was successful
+            if (rowsAffected > 0) {
+                List<StudentModel> updatedStudentList = getAllStudents();
+                adapter.updateData(updatedStudentList);
+            }
+        }
+
+    }
+
+
+    public void deleteStudent(Context context,String id){
         SQLiteDatabase db=this.getWritableDatabase();
-        db.delete(TABLE_NAME,ID+"=?",new String[]{id});
+        if (studentExists(id)) {
+            db.delete(TABLE_NAME, ID + "=?", new String[]{id});
+        }
+        else {
+
+            Toast.makeText(context, "Il n'existe pas d'utilisateur avec l'ID :" + id , Toast.LENGTH_SHORT).show();
+        }
         List<StudentModel> updatedStudentList = getAllStudents();
         adapter.updateData(updatedStudentList);
     }
