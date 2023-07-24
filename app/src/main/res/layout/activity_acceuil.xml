@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcceuilActivity">
+    tools:context=".AcceuilActivity"
+    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/line1"
         android:orientation="horizontal"
@@ -53,14 +54,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/line1">
-    <TextView
-        android:gravity="center"
-        android:padding="10dp"
-        android:id="@+id/data_list_count"
-        android:text="LISTE DES UTILISATEURS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+
+        <TextView
+            android:id="@+id/data_list_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#181717"
+            android:text="LISTE DES UTILISATEURS"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/all_data_list"
@@ -81,4 +85,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
