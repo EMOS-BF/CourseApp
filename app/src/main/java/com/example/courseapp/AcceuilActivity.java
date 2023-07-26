@@ -54,7 +54,7 @@ public class AcceuilActivity extends AppCompatActivity {
         StudentAdapter adapter = new StudentAdapter(studentModelList);
         recyclerView.setAdapter(adapter);
 
-        int textColor = getResources().getColor(R.color.line_number_color); // Couleur du texte des numéros de ligne
+        int textColor = getResources().getColor(R.color.dark_blue1); // Couleur du texte des numéros de ligne
         float textSize = getResources().getDimension(R.dimen.line_number_text_size); // Taille du texte des numéros de ligne
         recyclerView.addItemDecoration(new LineNumbersDecoration(textColor, textSize));
 
