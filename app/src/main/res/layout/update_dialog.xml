@@ -4,36 +4,47 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content">
+
     <TextView
-        android:text="MISE A JOUR"
-        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue1"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:padding="10dp"
+        android:text="MISE A JOUR"
+        android:textColor="@color/background" />
+
     <EditText
-        android:layout_margin="5dp"
         android:id="@+id/username"
-        android:hint="Username : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:hint="Username : " />
+
+    <EditText
         android:id="@+id/email"
-        android:hint="Email : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:hint="Email : " />
+
+    <EditText
         android:id="@+id/domaine"
-        android:hint="Domaine : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:drawableLeft="@drawable/baseline_factory_24"
+        android:hint="Domaine : " />
+
+    <EditText
         android:id="@+id/niveau"
-        android:hint="Niveau : "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/baseline_school_24"
+        android:hint="Niveau : " />
     <Button
         android:layout_margin="10dp"
         android:text="MODIFIER"

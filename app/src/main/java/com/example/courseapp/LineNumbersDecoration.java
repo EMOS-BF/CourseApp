@@ -26,7 +26,7 @@ public class LineNumbersDecoration extends RecyclerView.ItemDecoration {
         float offset = textSize / 3; // Adjust the offset to position the numbers correctly
 
         // Définir la couleur de fond de la colonne ici (par exemple, couleur bleue)
-        int columnBackgroundColor = ContextCompat.getColor(parent.getContext(), R.color.card_background);
+        int columnBackgroundColor = ContextCompat.getColor(parent.getContext(), R.color.dashboard_item_1);
         canvas.drawRect(parent.getLeft(), parent.getTop(), parent.getLeft() + offset, parent.getBottom(), paint);
 
         for (int i = 0; i < childCount; i++) {

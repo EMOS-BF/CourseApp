@@ -26,10 +26,21 @@
             android:padding="24dp">
 
             <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:text="EduCourse Manager"
+                android:textAlignment="center"
+                android:textColor="@color/dark_blue"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                card_view:drawableLeftCompat="@drawable/iconapp" />
+
+            <TextView
                 android:id="@+id/label_inscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Inscription"
                 android:textAlignment="center"
@@ -42,7 +53,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
