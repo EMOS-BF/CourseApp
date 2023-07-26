@@ -15,44 +15,64 @@ import android.widget.Toast;
 
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AcceuilActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     TextView datalist;
     TextView datalist_count;
+    TextView textAdmin;
     private StudentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil);
+        TextView textAdmin = findViewById(R.id.textViewAdmin);
+        TextView textViewDate = findViewById(R.id.textViewDate);
+        String nomAdmin = getIntent().getStringExtra("admin");
 
+        // Obtenir la date actuelle
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+        // Formatter la date pour l'afficher dans le TextView
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = dateFormat.format(currentDate);
+
+        // Mettre à jour le texte du TextView avec la date actuelle
+        textViewDate.setText(formattedDate);
+
+        textAdmin.setText(nomAdmin);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         databaseHelper = new DatabaseHelper(this,adapter);
 
         List<StudentModel> studentModelList = databaseHelper.getAllStudents();
 
-        // Créez un adaptateur personnalisé pour lier les données à la vue de chaque élément
         StudentAdapter adapter = new StudentAdapter(studentModelList);
         recyclerView.setAdapter(adapter);
 
+        int textColor = getResources().getColor(R.color.line_number_color); // Couleur du texte des numéros de ligne
+        float textSize = getResources().getDimension(R.dimen.line_number_text_size); // Taille du texte des numéros de ligne
+        recyclerView.addItemDecoration(new LineNumbersDecoration(textColor, textSize));
 
         databaseHelper=new DatabaseHelper(AcceuilActivity.this,adapter);
         Button delete=findViewById(R.id.delete_data);
         Button insert=findViewById(R.id.insert_data);
         Button update=findViewById(R.id.update_data);
-        datalist=findViewById(R.id.all_data_list);
+        //datalist=findViewById(R.id.all_data_list);
         datalist_count=findViewById(R.id.data_list_count);
 
-        datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS :  "+databaseHelper.getTotalCount());
+        datalist_count.setText(""+databaseHelper.getTotalCount());
 
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowInputDialog();
-                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
             }
         });
 
@@ -60,7 +80,7 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showUpdateIdDialog();
-                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
             }
         });
 
@@ -68,7 +88,7 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDeleteDialog();
-                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
             }
         });
 
@@ -87,7 +107,7 @@ public class AcceuilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showDataDialog(id_input.getText().toString());
                 alertDialog.dismiss();
-                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
             }
         });
 
@@ -146,7 +166,7 @@ public class AcceuilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 databaseHelper.deleteStudent(AcceuilActivity.this,id_input.getText().toString());
                 alertDialog.dismiss();
-                datalist_count.setText("NOMBRE TOTAL D'UTILISATEURS : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
 
             }
         });
@@ -180,7 +200,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 studentModel.setCreated_at(""+date.getTime());
                 databaseHelper.AddStudnet(studentModel);
                 alertDialog.dismiss();
-                datalist_count.setText("ALL DATA COUNT : "+databaseHelper.getTotalCount());
+                datalist_count.setText(""+databaseHelper.getTotalCount());
             }
         });
     }

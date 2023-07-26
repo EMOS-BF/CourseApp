@@ -148,8 +148,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor=sqLiteDatabase.rawQuery(query,null);
         return cursor.getCount();
     }
+    public String getUsernameAdmin(String username) {
+        String adminUsername = null;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-    public boolean checkusername(String username){
+        String query = "SELECT username FROM admins WHERE username = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username});
+
+        if (cursor.moveToFirst()) {
+            adminUsername = cursor.getString(1);
+        }
+
+        cursor.close();
+        db.close();
+
+        return adminUsername;
+    }
+
+
+public boolean checkusername(String username){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from admins where username = ?",new String[] {username});
         if(cursor.getCount() > 0){

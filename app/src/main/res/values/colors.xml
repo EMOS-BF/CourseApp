@@ -5,9 +5,23 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0000FF</color>
     <color name="cardview_dark_background">#FF000000</color>
-    <color name="material_dynamic_neutral10">#FF000000</color>
+    <!--<color name="material_dynamic_neutral10">#FF000000</color>-->
+    <color name="primary">#6A7CFF</color>
+    <color name="background">#F7F7FA</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="primary_text">#565805</color>
+    <color name="secondary_text">#909A9D</color>
+    <color name="dashboard_item_1">#2CC2EA</color>
+    <color name="dashboard_item_2">#ADE9C9</color>
+    <color name="dashboard_item_3">#72A4FF</color>
+    <color name="dashboard_item_4">#8872FF</color>
+    <!--color name="line_number_color">#FF000000</color-->
+    <color name="dark_blue">#062045</color>
+    <color name="dark_blue1">#0A6EAF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="line_number_color">#FF000000</color>
+
 </resources>
