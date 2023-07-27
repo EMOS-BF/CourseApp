@@ -23,5 +23,6 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="line_number_color">#FF000000</color>
+    <color name="white1">#DAD8D8</color>
 
 </resources>

@@ -11,15 +11,21 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="EduCourse Manager"
-        android:textAlignment="center"
-        android:textColor="@color/dark_blue"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="35sp"
         android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/iconapp" />
+        card_view:drawableLeftCompat="@drawable/icon2"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -33,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="#FEFDFD"
             android:orientation="vertical"
             android:padding="24dp">
 

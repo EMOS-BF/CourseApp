@@ -34,15 +34,17 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_marginStart="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="cursive"
         android:gravity="center"
+        android:maxLines="1"
         android:text="EduCourse Manager"
-        android:textColor="@color/dark_blue"
-        android:textSize="24sp"
+        android:textColor="@color/card_background"
+        android:textSize="35sp"
         android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/iconapp"
+        app:drawableLeftCompat="@drawable/icon2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -267,8 +269,7 @@
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/line2"
         android:overScrollMode="always"
-        android:padding="16dp"
-        android:scrollbars="vertical">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"

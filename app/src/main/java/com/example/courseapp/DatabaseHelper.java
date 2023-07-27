@@ -89,7 +89,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 studentModelList.add(studentModel);
             }
             while (cursor.moveToNext());
-
         }
         db.close();
         return studentModelList;
@@ -120,7 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             rowsAffected = db.update(TABLE_NAME, contentValues, ID + "=?", new String[]{String.valueOf(studentModel.getId())});
 
             // Update the adapter with the updated data if the update was successful
-            if (rowsAffected > 0) {
+           if (rowsAffected > 0) {
                 List<StudentModel> updatedStudentList = getAllStudents();
                 adapter.updateData(updatedStudentList);
             }
@@ -147,22 +146,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         Cursor cursor=sqLiteDatabase.rawQuery(query,null);
         return cursor.getCount();
-    }
-    public String getUsernameAdmin(String username) {
-        String adminUsername = null;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT username FROM admins WHERE username = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username});
-
-        if (cursor.moveToFirst()) {
-            adminUsername = cursor.getString(1);
-        }
-
-        cursor.close();
-        db.close();
-
-        return adminUsername;
     }
 
 

@@ -23,11 +23,11 @@ public class LineNumbersDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         int childCount = parent.getChildCount();
-        float offset = textSize / 3; // Adjust the offset to position the numbers correctly
+        float offset = textSize / 2; // Adjust the offset to position the numbers correctly
 
         // Définir la couleur de fond de la colonne ici (par exemple, couleur bleue)
         int columnBackgroundColor = ContextCompat.getColor(parent.getContext(), R.color.dashboard_item_1);
-        canvas.drawRect(parent.getLeft(), parent.getTop(), parent.getLeft() + offset, parent.getBottom(), paint);
+        canvas.drawRect(parent.getLeft(), parent.getTop(), parent.getLeft()-1 + offset, parent.getBottom(), paint);
 
         for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
