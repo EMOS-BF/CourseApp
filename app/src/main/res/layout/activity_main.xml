@@ -18,7 +18,6 @@
         android:layout_marginTop="16dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:maxLines="1"
         android:text="EduCourse Manager"
         android:textColor="@color/black"
         android:textSize="35sp"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#817B7B"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,19 +12,22 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="SUPRESSION UTILISATEUR"
-        android:textColor="@color/background" />
+        android:textColor="@color/background"
+        android:textStyle="bold" />
+
     <EditText
-        android:layout_margin="5dp"
         android:id="@+id/id_input"
-        android:hint="Veuillez entrer l'ID : "
-        android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Veuillez entrer l'ID : "
+        android:inputType="number" />
+
     <Button
-        android:layout_margin="10dp"
-        android:text="SUPPRIMER"
         android:id="@+id/delete_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="SUPPRIMER" />
 
 </LinearLayout>

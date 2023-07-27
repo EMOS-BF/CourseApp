@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/iconapp"
+        android:icon="@drawable/icon2"
         android:label="@string/EduCourseManager"
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseApp"

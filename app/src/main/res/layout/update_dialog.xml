@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#817B7B"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +12,8 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="MISE A JOUR"
-        android:textColor="@color/background" />
+        android:textColor="@color/background"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/username"
@@ -45,11 +46,12 @@
         android:layout_margin="5dp"
         android:drawableLeft="@drawable/baseline_school_24"
         android:hint="Niveau : " />
+
     <Button
-        android:layout_margin="10dp"
-        android:text="MODIFIER"
         android:id="@+id/update_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="MODIFIER" />
 
 </LinearLayout>
