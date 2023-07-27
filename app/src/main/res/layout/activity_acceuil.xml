@@ -75,7 +75,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="14dp">
 
             <TextView
@@ -84,10 +84,10 @@
                 android:layout_height="wrap_content"
                 android:text="Vue d'ensemble"
                 android:textColor="@color/primary_text"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="14sp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <LinearLayout
@@ -124,12 +124,13 @@
                     android:textSize="12sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layoutDate"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/layoutAdmin"
                 app:layout_constraintStart_toEndOf="@id/layoutClients"
@@ -157,12 +158,13 @@
                     android:textSize="10sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layoutAdmin"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutDate"
@@ -180,25 +182,27 @@
                     android:text="Admin connecté"
                     android:textColor="@color/secondary_text"
                     android:textSize="10sp" />
+
                 <TextView
                     android:id="@+id/textViewAdmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/primary_text"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
     <LinearLayout
         android:id="@+id/line1"
-        app:layout_constraintTop_toBottomOf="@id/cardHeader"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/cardHeader">
 
         <Button
             android:id="@+id/insert_data"
@@ -207,12 +211,15 @@
 
             android:layout_weight="1"
             android:maxLines="1"
-            android:text="INSERER"
-            android:textSize="13dp" />
+            android:text="+INSERER"
+            android:textSize="13sp"
+            app:iconPadding="0dp"
+            app:iconTint="@color/blue3" />
+
         <View
 
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/update_data"
@@ -223,11 +230,13 @@
             android:layout_weight="1"
             android:maxLines="1"
             android:text="MODIFIER"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            app:iconPadding="0dp" />
+
         <View
 
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/delete_data"
@@ -236,11 +245,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:maxLines="1"
-            android:text="SUPPRIMER"
-            android:textSize="13sp" />
+            android:text="EFFACER"
+            android:textSize="13sp"
+            app:iconPadding="0dp"
+            app:iconTint="@color/red1" />
+
         <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
