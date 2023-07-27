@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if (insert = true){
                                 Toast.makeText(RegisterActivity.this, "Inscription Réussie", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),AcceuilActivity.class);
+                                intent.putExtra("admin", user);
                                 startActivity(intent);
                             }
                             else {

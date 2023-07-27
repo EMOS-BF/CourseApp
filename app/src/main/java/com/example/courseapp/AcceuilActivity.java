@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,13 +61,21 @@ public class AcceuilActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new LineNumbersDecoration(textColor, textSize));
 
         databaseHelper=new DatabaseHelper(AcceuilActivity.this,adapter);
+        ImageButton logout = findViewById(R.id.logoutAdmin);
         Button delete=findViewById(R.id.delete_data);
         Button insert=findViewById(R.id.insert_data);
         Button update=findViewById(R.id.update_data);
-        //datalist=findViewById(R.id.all_data_list);
         datalist_count=findViewById(R.id.data_list_count);
 
         datalist_count.setText(""+databaseHelper.getTotalCount());
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         insert.setOnClickListener(new View.OnClickListener() {

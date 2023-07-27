@@ -8,14 +8,28 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+
     <View
         android:id="@+id/viewHeaderBackground"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         android:background="@color/primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cardHeader"/>
+        app:layout_constraintBottom_toTopOf="@id/cardHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/logoutAdmin"
+        android:layout_width="50dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="44dp"
+        android:background="@color/primary"
+        app:layout_constraintStart_toEndOf="@id/textTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/twotone_logout_24" />
 
     <TextView
         android:id="@+id/textView2"
@@ -182,13 +196,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/insert_data"
-            android:text="INSERER"
-            android:layout_weight="1"
-
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="INSERER"
+            android:textSize="13dp" />
         <View
 
             android:layout_width="2dp"
@@ -201,18 +218,23 @@
             android:layout_height="wrap_content"
 
             android:layout_weight="1"
-            android:text="MODIFIER" />
+            android:maxLines="1"
+            android:text="MODIFIER"
+            android:textSize="13sp" />
         <View
 
             android:layout_width="2dp"
             android:layout_height="match_parent"/>
+
         <Button
             android:id="@+id/delete_data"
-            android:text="SUPPRIMER"
-
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="SUPPRIMER"
+            android:textSize="13sp" />
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"/>
@@ -251,8 +273,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:scrollbars="vertical">
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
